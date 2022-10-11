@@ -22,6 +22,7 @@ const config: GatsbyConfig = {
     `gatsby-plugin-sharp`,
     `gatsby-plugin-sass`,
     gatsbySourceFilesystemOption,
+    `gatsby-plugin-mdx`,
   ],
 };
 
