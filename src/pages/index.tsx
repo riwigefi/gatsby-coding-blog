@@ -1,6 +1,10 @@
 // Step 1: Import React
 import * as React from 'react';
+import { StaticImage } from 'gatsby-plugin-image';
+
 import Layout from '../components/Layout/index';
+
+import Seo from '../components/Seo';
 
 /**
  * The Gatsby Link components provides a performance feature called preloading.
@@ -14,12 +18,18 @@ const IndexPage = () => {
   return (
     <Layout pageTitle='Home Page'>
       <p>I'm making this by following the Gatsby Tutorial.</p>
+      {/* <StaticImage
+        alt='Street'
+        src='https://th.wallhaven.cc/lg/zy/zygeko.jpg'
+      /> */}
+
+      <StaticImage alt='Wall heaven fantasy' src='../images/fantasy.jpeg' />
     </Layout>
   );
 };
 
 // You'll learn about this in the next task, just copy it for now
-export const Head = () => <title>Home Page</title>;
+export const Head = () => <Seo title='Home Page'></Seo>;
 
 // Step 3: Export your component
 export default IndexPage;

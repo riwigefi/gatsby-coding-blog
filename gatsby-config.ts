@@ -1,5 +1,13 @@
 import type { GatsbyConfig } from 'gatsby';
 
+const gatsbySourceFilesystemOption = {
+  resolve: `gatsby-source-filesystem`,
+  options: {
+    name: `blog`,
+    path: `${__dirname}/blog`,
+  },
+};
+
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `gatsby-coding-blog`,
@@ -9,7 +17,12 @@ const config: GatsbyConfig = {
   // If you use VSCode you can also use the GraphQL plugin
   // Learn more at: https://gatsby.dev/graphql-typegen
   graphqlTypegen: true,
-  plugins: [`gatsby-plugin-sass`],
+  plugins: [
+    `gatsby-plugin-image`,
+    `gatsby-plugin-sharp`,
+    `gatsby-plugin-sass`,
+    gatsbySourceFilesystemOption,
+  ],
 };
 
 export default config;
