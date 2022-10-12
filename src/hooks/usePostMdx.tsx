@@ -7,6 +7,7 @@ const usePostNodes = () => {
         frontmatter: {
           date: string;
           title: string;
+          slug: string;
         };
         id: string;
         excerpt: string;
@@ -19,6 +20,7 @@ const usePostNodes = () => {
           frontmatter {
             title
             date(formatString: "MMMM DD, YYYY")
+            slug
           }
           id
           excerpt(pruneLength: 50)
