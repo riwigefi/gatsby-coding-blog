@@ -23,6 +23,7 @@ const config: GatsbyConfig = {
     `gatsby-plugin-sass`,
     gatsbySourceFilesystemOption,
     `gatsby-plugin-mdx`,
+    `gatsby-transformer-sharp`,
   ],
 };
 
