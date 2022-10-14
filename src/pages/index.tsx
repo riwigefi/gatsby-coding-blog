@@ -17,13 +17,29 @@ import Seo from '../components/Seo';
 const IndexPage = () => {
   return (
     <Layout pageTitle='Home Page'>
-      <p>I'm making this by following the Gatsby Tutorial.</p>
-      {/* <StaticImage
-        alt='Street'
-        src='https://th.wallhaven.cc/lg/zy/zygeko.jpg'
-      /> */}
-
-      <StaticImage alt='Wall heaven fantasy' src='../images/fantasy.jpeg' />
+      <section className='home-hero'>
+        <div className='home-hero-inner'>
+          <div className='intro-wrap'></div>
+          <div className='portrait-wrap'></div>
+        </div>
+      </section>
+      <section className='home-content-container'>
+        {Array(50)
+          .fill(1)
+          .map((_, idx) => (
+            <div
+              className='img-container'
+              style={{ margin: '20px auto' }}
+              key={idx}
+            >
+              <p>I'm making this by following the Gatsby Tutorial.{idx}</p>
+              <StaticImage
+                alt='Wall heaven fantasy'
+                src='../images/fantasy.jpeg'
+              />
+            </div>
+          ))}
+      </section>
     </Layout>
   );
 };

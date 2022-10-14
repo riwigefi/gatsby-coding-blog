@@ -1,20 +1,13 @@
-import * as React from 'react';
+import React, { useCallback, useState } from 'react';
 import { Link } from 'gatsby';
 
 import { MDXProvider } from '@mdx-js/react';
 
 import CodeBlock from '../CodeBlock';
 
-import useSiteMetadata from '../../hooks/useSiteMetadata';
+import SiteHeader from '../SiteHeader';
 
-import {
-  container,
-  siteTitle,
-  heading,
-  navLinks,
-  navLinkItem,
-  navLinkText,
-} from './index.module.scss';
+import useSiteMetadata from '../../hooks/useSiteMetadata';
 
 const components = {
   pre: (props: any) => <div {...props}></div>,
@@ -26,43 +19,30 @@ const Layout: React.FC<{
   children: React.ReactNode;
 }> = ({ pageTitle, children }) => {
   // to pull data into a building-block component
-  // we'll use a pre-defined function from Gatsby called `useStaticQuery`
-  // Call `useStaticQuery` nad pass it the query you created in Graph-iQL
+  // we'll use a pre-defined function from Gatsby called useStaticQuery
+  // Call useStaticQuery nad pass it the query you created in Graph-iQL
   const siteMetadata = useSiteMetadata();
+
+  const [isLightTheme, setIsLightTheme] = useState(true);
+
+  const toggleTheme = useCallback(
+    () => setIsLightTheme((isLightTheme) => !isLightTheme),
+    []
+  );
 
   return (
     <MDXProvider components={components as any}>
-      <div
-        className={container}
-        style={{
-          color: `var(--textNormal)`,
-          background: `var(--bg)`,
-        }}
-      >
-        <header className={siteTitle}>{siteMetadata.title}</header>
-        <nav>
-          <ul className={navLinks}>
-            <li className={navLinkItem}>
-              <Link to='/' className={navLinkText}>
-                Home
-              </Link>
-            </li>
-            <li className={navLinkItem}>
-              <Link to='/about' className={navLinkText}>
-                About
-              </Link>
-            </li>
-            <li className={navLinkItem}>
-              <Link to='/blog' className={navLinkText}>
-                Blog
-              </Link>
-            </li>
-          </ul>
-        </nav>
-        <main>
-          <h1 className={heading}>{pageTitle}</h1>
-          {children}
-        </main>
+      <div className='site-wrap' data-theme={isLightTheme ? 'light' : 'dark'}>
+        <div className='site-header-container'>
+          <SiteHeader
+            isLightTheme={isLightTheme}
+            toggleTheme={toggleTheme}
+          ></SiteHeader>
+        </div>
+        <div className='main-container'>
+          <div className='main'>{children}</div>
+        </div>
+        <footer className='site-footer-container'>这里是页脚</footer>
       </div>
     </MDXProvider>
   );

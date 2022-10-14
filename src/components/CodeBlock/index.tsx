@@ -16,7 +16,8 @@ const CodeBlock: React.FC<{
       {...defaultProps}
       code={children as string}
       language={language as Language}
-      theme={vsDark}
+      // theme={vsDark}
+      theme={undefined}
     >
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <pre className={className} style={{ ...style }}>
