@@ -6,8 +6,11 @@ import { MDXProvider } from '@mdx-js/react';
 import CodeBlock from '../CodeBlock';
 
 import SiteHeader from '../SiteHeader';
+import SiteFooter from '../SiteFooter';
 
 import useSiteMetadata from '../../hooks/useSiteMetadata';
+
+import './index.scss';
 
 const components = {
   pre: (props: any) => <div {...props}></div>,
@@ -34,15 +37,14 @@ const Layout: React.FC<{
     <MDXProvider components={components as any}>
       <div className='site-wrap' data-theme={isLightTheme ? 'light' : 'dark'}>
         <div className='site-header-container'>
-          <SiteHeader
-            isLightTheme={isLightTheme}
-            toggleTheme={toggleTheme}
-          ></SiteHeader>
+          <SiteHeader isLightTheme={isLightTheme} toggleTheme={toggleTheme} />
         </div>
         <div className='main-container'>
           <div className='main'>{children}</div>
         </div>
-        <footer className='site-footer-container'>这里是页脚</footer>
+        <div className='site-footer-container'>
+          <SiteFooter />
+        </div>
       </div>
     </MDXProvider>
   );

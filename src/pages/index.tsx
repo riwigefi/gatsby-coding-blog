@@ -6,6 +6,8 @@ import Layout from '../components/Layout/index';
 
 import Seo from '../components/Seo';
 
+import './index.scss';
+
 /**
  * The Gatsby Link components provides a performance feature called preloading.
  * This means that the resource for the linked page are requested when the link scrolls into view

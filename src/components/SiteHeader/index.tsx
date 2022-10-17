@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 import { Link } from 'gatsby';
 
+import './index.scss';
+
 const NavLinks = [
   {
     label: 'Home',
@@ -10,6 +12,10 @@ const NavLinks = [
   {
     label: 'About',
     to: '/about',
+  },
+  {
+    label: 'Blog',
+    to: '/blog',
   },
   {
     label: 'Tag',
