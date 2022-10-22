@@ -3,18 +3,20 @@ import { Link } from 'gatsby';
 
 import Layout from '../../components/Layout/index';
 import Seo from '../../components/Seo/index';
-import usePostNodes from '../../hooks/usePostMdx';
+import usePostNodes from '../../hooks/usePostInfo';
 
 const BlogPage = () => {
-  const postMdxNodes = usePostNodes();
+  const edges = usePostNodes();
+
+  console.log('edges--', edges);
 
   return (
     <Layout pageTitle='My Blog Posts'>
       <ul>
-        {postMdxNodes.map((node) => (
+        {edges.map(({ node }) => (
           <article key={node.id}>
             <h2>
-              <Link to={`/blog/${node.frontmatter.slug}`}>
+              <Link to={`/${node.frontmatter.slug}`}>
                 {node.frontmatter.title}
               </Link>
             </h2>

@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Link } from 'gatsby';
 
 import { MDXProvider } from '@mdx-js/react';
@@ -33,16 +33,43 @@ const Layout: React.FC<{
     []
   );
 
+  const htmlEleRef = useRef<HTMLElement | null>(null);
+
+  const prevScrollTop = useRef(0);
+
+  const [isNegativeScrollTop, setIsNegativeScrollTop] = useState(true);
+
+  useEffect(() => {
+    htmlEleRef.current = document.querySelector('html');
+    window.addEventListener('scroll', () => {
+      const latestScrollTop = htmlEleRef.current?.scrollTop || 0;
+      if (latestScrollTop > prevScrollTop.current) {
+        setIsNegativeScrollTop(false);
+      } else {
+        setIsNegativeScrollTop(true);
+      }
+      prevScrollTop.current = latestScrollTop;
+    });
+  }, []);
+
   return (
     <MDXProvider components={components as any}>
       <div className='site-wrap' data-theme={isLightTheme ? 'light' : 'dark'}>
-        <div className='site-header-container'>
+        <div
+          className={`site-header-container ${
+            !isNegativeScrollTop ? 'hide' : ''
+          }`}
+        >
           <SiteHeader isLightTheme={isLightTheme} toggleTheme={toggleTheme} />
         </div>
         <div className='main-container'>
           <div className='main'>{children}</div>
         </div>
-        <div className='site-footer-container'>
+        <div
+          className={`fixed-class ${
+            true ? 'true-class' : 'site-footer-container'
+          }`}
+        >
           <SiteFooter />
         </div>
       </div>

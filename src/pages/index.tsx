@@ -1,6 +1,9 @@
 // Step 1: Import React
 import * as React from 'react';
+import { Link } from 'gatsby';
 import { StaticImage } from 'gatsby-plugin-image';
+
+import usePostNodes from '../hooks/usePostInfo';
 
 import Layout from '../components/Layout/index';
 
@@ -20,25 +23,41 @@ const IndexPage = () => {
   return (
     <Layout pageTitle='Home Page'>
       <section className='home-hero'>
-        <div className='home-hero-inner'>
-          <div className='intro-wrap'></div>
-          <div className='portrait-wrap'></div>
+        <div className='introduction-self'>
+          <h2>Hello, I am Jun Ming</h2>
+          <p>
+            A frontend developer consultant from China, focusing on user
+            experience, visual and interaction design. This is my personal blog.
+          </p>
+        </div>
+        <div className='portrait-warp'>
+          <StaticImage
+            class='avatar'
+            alt='Self Avatar'
+            src='../images/fantasy.jpeg'
+          />
         </div>
       </section>
-      <section className='home-content-container'>
-        {Array(50)
+      <section className='home-content'>
+        {Array(10)
           .fill(1)
           .map((_, idx) => (
-            <div
-              className='img-container'
-              style={{ margin: '20px auto' }}
-              key={idx}
-            >
-              <p>I'm making this by following the Gatsby Tutorial.{idx}</p>
-              <StaticImage
-                alt='Wall heaven fantasy'
-                src='../images/fantasy.jpeg'
-              />
+            <div className='blog-preview' key={idx}>
+              <div className='blog-info'>
+                Tag / Time / Time to Read / Location
+              </div>
+              <div className='blog-title'>
+                <Link className='title' to='/home'>
+                  浅谈JDK的动态代理
+                </Link>
+              </div>
+              <div className='blog-excerpt'>
+                She then expatiated very warmly upon the advantages I should
+                reap from her plan; talked in a high style of my future
+                grandeur; assured me how heartily I should despise almost every
+                body and every thing I had hitherto seen; predicted my marrying
+                into some family of the
+              </div>
             </div>
           ))}
       </section>

@@ -9,7 +9,7 @@ const CodeBlock: React.FC<{
   children: React.ReactNode;
 }> = ({ children, className }) => {
   // Pull the className
-  const language = className.replace(/language-/, '') || '';
+  const language = className?.replace(/language-/, '') || '';
 
   return (
     <Highlight

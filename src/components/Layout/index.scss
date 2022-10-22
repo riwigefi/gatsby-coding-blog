@@ -28,32 +28,37 @@
   --black: #000;
 }
 
-.site-wrap {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  background-color: var(--body-bg);
-  .site-header-container {
-    height: 88px;
-  }
-  .main-container {
-    flex: 1;
-    overflow: hidden;
-    .main {
-      width: 90%;
-      height: 100%;
-      margin: auto;
-      overflow: auto;
+// pc端样式
+@media screen and (min-width: 768px) {
+  .site-wrap {
+    background-color: var(--body-bg);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding-top: 88px;
+    .site-header-container {
+      width: 100%;
+      height: 88px;
+      background-color: var(--body-bg);
+      z-index: 10;
+      transition: all 0.3s ease-in-out;
+      position: fixed;
+      top: 0;
+      &.sticky {
+        height: 64px;
+      }
+      &.hide {
+        transform: translateY(calc(-100% - 1px));
+      }
     }
   }
-  .site-footer-container {
-    height: 88px;
-  }
-  p,
-  div,
-  li {
-    color: var(--text-color-normal);
-  }
+}
+
+// mobile端样式
+
+// 主题色变化
+p,
+div,
+li {
+  color: var(--text-color-normal);
 }

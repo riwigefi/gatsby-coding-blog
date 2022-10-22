@@ -39,20 +39,22 @@ const SiteHeader: React.FC<{
   console.log('--location--', location);
 
   return (
-    <header className='site-header' id='siteHeader'>
+    <header className='site-header flex' id='siteHeader'>
       <div className='container flex'>
-        <div className='logo'>
+        <div className='logo flex'>
           <Link to='/' className='logo-text'>
             Wang Jun Ming's Blog
           </Link>
         </div>
+        {/** pc端导航栏 */}
         <div className='header-right flex'>
-          <div className='header-nav-wrap'>
+          <div className='header-nav-wrap flex'>
             {NavLinks.map((navItem) => (
               <div className='nav-item' key={navItem.to}>
                 <Link className='link' to={navItem.to}>
                   {navItem.label}
                 </Link>
+                <div className='hover-line'></div>
               </div>
             ))}
           </div>
@@ -109,7 +111,7 @@ const SiteHeader: React.FC<{
             </span>
           </div>
           <div
-            className='nav-icon menu-icon flex'
+            className='nav-icon open-mobile-menu-icon flex'
             onClick={toggleMobileNavVisible}
           >
             {Array(3)
@@ -120,6 +122,7 @@ const SiteHeader: React.FC<{
           </div>
         </div>
       </div>
+      {/** 移动端导航栏 */}
       <div className={`mobile-nav-wrap ${isOpenMobileNav && 'open'} flex`}>
         <div className='close-mobile-nav-wrap' onClick={toggleMobileNavVisible}>
           X

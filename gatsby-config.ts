@@ -35,9 +35,11 @@ const config: GatsbyConfig = {
   plugins: [
     `gatsby-plugin-image`,
     `gatsby-plugin-sass`,
+
     gatsbySourceFilesystemOption,
     `gatsby-plugin-mdx`,
     gatsbyTransformerRemarkOption,
+
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
   ],
