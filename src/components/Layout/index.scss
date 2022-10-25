@@ -39,7 +39,6 @@
     .site-header-container {
       width: 100%;
       height: 88px;
-      background-color: var(--body-bg);
       z-index: 10;
       transition: all 0.3s ease-in-out;
       position: fixed;
@@ -49,6 +48,13 @@
       }
       &.hide {
         transform: translateY(calc(-100% - 1px));
+      }
+    }
+    .main-container {
+      width: 100%;
+      .main {
+        max-width: 80%;
+        margin: 0 auto;
       }
     }
   }

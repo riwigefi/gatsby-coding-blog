@@ -4,8 +4,13 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
 import type { ImageDataLike } from 'gatsby-plugin-image';
 
-import Layout from '../components/Layout';
-import Seo from '../components/Seo';
+import { defineCustomElements as deckDeckGoHighlightElement } from "@deckdeckgo/highlight-code/dist/loader";
+
+import Layout from '../../components/Layout';
+import Seo from '../../components/Seo';
+
+import './md-remark.scss';
+import {useEffect} from "react";
 
 const BlogPost = ({
   data, // this prop will be injected by the GraphQL query below.
@@ -17,17 +22,23 @@ const BlogPost = ({
   const { markdownRemark } = data; // data.markdownRemark holds your post data
   const { frontmatter, html } = markdownRemark;
   console.log('front-matter--', frontmatter);
+
+  useEffect(() => {
+    deckDeckGoHighlightElement().then((result) => {
+      console.log('执行结果--',result);
+    });
+  }, [])
   return (
-    <div className='blog-post-container'>
-      <div className='blog-post'>
+    <Layout pageTitle='Blog Page'>
+      <div className='blog'>
         <h1>{frontmatter.title}</h1>
         <h2>{frontmatter.date}</h2>
         <div
-          className='blog-post-content'
-          dangerouslySetInnerHTML={{ __html: html }}
+            className='blog-post-content'
+            dangerouslySetInnerHTML={{ __html: html }}
         />
       </div>
-    </div>
+    </Layout>
   );
 };
 

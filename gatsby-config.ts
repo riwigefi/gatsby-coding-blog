@@ -12,12 +12,12 @@ const gatsbyTransformerRemarkOption = {
   resolve: `gatsby-transformer-remark`,
   options: {
     plugins: [
-      // {
-      //   resolve: 'gatsby-remark-prismjs',
-      //   options: {
-      //     showLineNumbers: true,
-      //   },
-      // },
+      {
+        resolve: `gatsby-remark-highlight-code`,
+        options: {
+          theme: "dracula"
+        }
+      }
     ],
   },
 };
@@ -37,7 +37,7 @@ const config: GatsbyConfig = {
     `gatsby-plugin-sass`,
 
     gatsbySourceFilesystemOption,
-    `gatsby-plugin-mdx`,
+    // `gatsby-plugin-mdx`,
     gatsbyTransformerRemarkOption,
 
     `gatsby-transformer-sharp`,

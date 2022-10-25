@@ -65,11 +65,7 @@ const Layout: React.FC<{
         <div className='main-container'>
           <div className='main'>{children}</div>
         </div>
-        <div
-          className={`fixed-class ${
-            true ? 'true-class' : 'site-footer-container'
-          }`}
-        >
+        <div className='site-footer-container'>
           <SiteFooter />
         </div>
       </div>

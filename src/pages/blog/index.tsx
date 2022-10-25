@@ -16,7 +16,7 @@ const BlogPage = () => {
         {edges.map(({ node }) => (
           <article key={node.id}>
             <h2>
-              <Link to={`/${node.frontmatter.slug}`}>
+              <Link to={`/blog/${node.frontmatter.slug}`}>
                 {node.frontmatter.title}
               </Link>
             </h2>
