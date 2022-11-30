@@ -28,10 +28,27 @@
   --black: #000;
 }
 
+// common styles
+.site-wrap {
+  background-color: var(--body-bg);
+  .site-header-container {}
+  .main-container {}
+  .site-footer-container {}
+}
+
+// Mobile devices,iPad,Tablets
+@media screen and (max-width: 768px) {
+  .site-header-container {
+    padding: 0 16px;
+  }
+  .main-container {
+    padding: 0 16px;
+  }
+}
+
 // pc端样式
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
   .site-wrap {
-    background-color: var(--body-bg);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -59,8 +76,6 @@
     }
   }
 }
-
-// mobile端样式
 
 // 主题色变化
 p,

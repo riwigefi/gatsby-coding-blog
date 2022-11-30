@@ -1,12 +1,44 @@
-// // css媒体查询
-@media screen and (min-width: 992px) {
-  // pc端
+// common styles
+
+.site-header {
+  .container {
+    width: 100%;
+    .site-name {
+      font-size: 16px;
+      font-weight: bold;
+      color: var(--text-color-dark);
+      text-decoration: none;
+    }
+    .header-right {
+      .header-nav-wrap {}
+      .nav-icon {
+        svg {
+          width: 20px;
+          height: 20px;
+          fill: var(--text-color-normal);
+        }
+      }
+    }
+  }
+  .mobile-nav-wrap {
+    .close-mobile-nav-wrap {}
+  }
+}
+
+// Mobile devices, iPad,Tablets
+@media screen and (max-width:768px ) {
+  
+}
+
+
+// Small screen,and desktops,and more on
+@media screen and (min-width: 769px) {
   .site-header {
+    padding: 0 40px;
+    box-sizing: border-box;
     .container {
-      width: 100%;
-      .logo {
-        width: 40%;
-        justify-content: center;
+      .site-name {
+        display: flex;
         align-items: center;
       }
       .header-right {
@@ -148,11 +180,7 @@
     &:last-of-type {
       margin-right: 0;
     }
-    svg {
-      width: 20px;
-      height: 20px;
-      fill: var(--text-color-normal);
-    }
+
   }
   .menu-icon {
     height: 20px;

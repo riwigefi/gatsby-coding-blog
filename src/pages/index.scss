@@ -1,13 +1,95 @@
-@media screen and (min-width: 768px) {
+/**
+Now let's see some common breakpoints for widths of devices:
+1. 320px~480px: Mobile devices
+2. 481px~768px: iPad,Tablets
+3. 769px~1024px: Small screen,laptops
+4. 1025px~1200px: Desktop,large screen
+5. 1201px and more: Extra large screens,TV
+ */
+
+// common styles
+.home-hero {
+  .introduction {
+    .brief {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--text-color-dark);
+    }
+    .detail {
+      font-size: 1rem;
+      color: var(--text-color-normal);
+      line-height: 1.6rem;
+    }
+  }
+
+}
+.home-content {
+  .post-preview {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    .post-info {
+      color: var(--text-color-light);
+      font-size: .875rem;
+      margin-bottom: 2rem;
+      .post-tag {
+        color: var(--text-color-light);
+        text-decoration: none;
+      }
+    }
+    .post-link {
+      text-decoration: none;
+      .post-title {
+        margin-bottom: 2rem;
+        font-weight: bold;
+        color: var(--text-color-dark);
+        font-size: 1.5rem;
+      }
+      .post-excerpt {
+        color: var(--text-color-normal);
+        line-height:1.8rem;
+      }
+    }
+
+  }
+}
+
+
+// Mobile devices,iPad,Tablets
+@media screen and (max-width: 768px) {
   .home-hero {
-    width: 80%;
-    margin: 0 auto;
+    width: 100%;
+    margin-bottom: 4rem;
+    .portrait-warp {
+      margin: auto;
+      width: 80vw;
+      height: 80vw;
+      box-shadow: var(--shadow);
+      background-color: var(--light-bg-color);
+      .avatar {
+        width: 100%;
+        height: 100%;
+        border-radius: 16px;
+      }
+    }
+  }
+}
+
+// Normal desktops screens
+@media screen and (min-width: 769px){
+  .home-hero {
+    margin: 0 auto 20px auto;
     display: flex;
     align-items: center;
+    width: 96%;
+    .introduction {
+      width: 100%;
+      .detail {
+        width: 60%;
+      }
+    }
     .portrait-warp {
       box-shadow: var(--shadow);
-      line-height: 0;
-      position: relative;
       background-color: var(--light-bg-color);
       .avatar {
         width: 20vw;

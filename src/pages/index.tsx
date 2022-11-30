@@ -20,12 +20,15 @@ import './index.scss';
 
 // Step 2: Define your component
 const IndexPage = () => {
+
+    const postNodeList = usePostNodes();
+
   return (
     <Layout pageTitle='Home Page'>
       <section className='home-hero'>
-        <div className='introduction-self'>
-          <h2>Hello, I am Jun Ming</h2>
-          <p>
+        <div className='introduction'>
+          <h2 className="brief">Hello, I am Jun Ming</h2>
+          <p className="detail">
             A frontend developer consultant from China, focusing on user
             experience, visual and interaction design. This is my personal blog.
           </p>
@@ -34,32 +37,35 @@ const IndexPage = () => {
           <StaticImage
             class='avatar'
             alt='Self Avatar'
-            src='../images/fantasy.jpeg'
+            src='../images/avatar.png'
           />
         </div>
       </section>
       <section className='home-content'>
-        {Array(10)
-          .fill(1)
-          .map((_, idx) => (
-            <div className='blog-preview' key={idx}>
-              <div className='blog-info'>
-                Tag / Time / Time to Read / Location
-              </div>
-              <div className='blog-title'>
-                <Link className='title' to='/home'>
-                  浅谈JDK的动态代理
-                </Link>
-              </div>
-              <div className='blog-excerpt'>
-                She then expatiated very warmly upon the advantages I should
-                reap from her plan; talked in a high style of my future
-                grandeur; assured me how heartily I should despise almost every
-                body and every thing I had hitherto seen; predicted my marrying
-                into some family of the
-              </div>
-            </div>
-          ))}
+        {postNodeList.map((item, idx) =>{
+
+            const {
+               tags,title,date,slug
+            } = item.node.frontmatter;
+            const excerpt = item.node.excerpt;
+            const timeToRead = item.node.timeToRead;
+            return  (
+                <div className='post-preview' key={idx}>
+                    <div className='post-info'>
+                        <Link className="post-tag" to="/">{tags[0]}</Link>
+                        {` / ${date} / ${timeToRead} min / Location`}
+                    </div>
+                    <Link className="post-link" to={`/blog/${slug}`}>
+                        <div className="post-title">
+                            {title}
+                        </div>
+                        <div className='post-excerpt'>
+                            {excerpt}
+                        </div>
+                    </Link>
+                </div>
+            )
+        })}
       </section>
     </Layout>
   );

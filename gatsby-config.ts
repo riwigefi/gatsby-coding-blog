@@ -1,10 +1,18 @@
-import type { GatsbyConfig } from 'gatsby';
+import type { GatsbyConfig } from "gatsby";
 
-const gatsbySourceFilesystemOption = {
+const gatsbySourceFilesystemOptionForMd = {
   resolve: `gatsby-source-filesystem`,
   options: {
     name: `blog`,
     path: `${__dirname}/blog`,
+  },
+};
+
+const gatsbySourceFilesystemOptionForIllustration = {
+  resolve: `gatsby-source-filesystem`,
+  options: {
+    name: `blog`,
+    path: `${__dirname}/illustration`,
   },
 };
 
@@ -15,10 +23,25 @@ const gatsbyTransformerRemarkOption = {
       {
         resolve: `gatsby-remark-highlight-code`,
         options: {
-          theme: "dracula"
-        }
-      }
+          theme: "dracula",
+        },
+      },
+      {
+        resolve: `gatsby-remark-images`,
+        options: {
+          maxWidth: 800,
+        },
+      },
     ],
+  },
+};
+
+const gatsbyReactSvgOption = {
+  resolve: `gatsby-plugin-react-svg`,
+  options: {
+    rule: {
+      include: `${__dirname}/src/icons`,
+    },
   },
 };
 
@@ -35,13 +58,14 @@ const config: GatsbyConfig = {
   plugins: [
     `gatsby-plugin-image`,
     `gatsby-plugin-sass`,
-
-    gatsbySourceFilesystemOption,
+    gatsbyReactSvgOption,
     // `gatsby-plugin-mdx`,
-    gatsbyTransformerRemarkOption,
-
-    `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
+    gatsbyTransformerRemarkOption,
+    `gatsby-plugin-image`,
+    gatsbySourceFilesystemOptionForMd,
+    gatsbySourceFilesystemOptionForIllustration,
   ],
 };
 

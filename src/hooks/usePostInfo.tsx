@@ -1,4 +1,4 @@
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql, useStaticQuery } from "gatsby";
 
 const usePostNodes = () => {
   const data = useStaticQuery<{
@@ -13,12 +13,13 @@ const usePostNodes = () => {
           };
           id: string;
           excerpt: string;
+          timeToRead: number;
         };
       }[];
     };
   }>(graphql`
     query {
-      allMarkdownRemark {
+      allMarkdownRemark(sort: { fields: frontmatter___date, order: DESC }) {
         edges {
           node {
             frontmatter {
@@ -27,7 +28,9 @@ const usePostNodes = () => {
               date
               slug
             }
+            id
             excerpt
+            timeToRead
           }
         }
       }

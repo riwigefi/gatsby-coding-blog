@@ -1,41 +1,44 @@
-import * as React from 'react';
-import { graphql } from 'gatsby';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import React, { useEffect } from "react";
 
-import type { ImageDataLike } from 'gatsby-plugin-image';
+import { graphql } from "gatsby";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
+
+import type { ImageDataLike } from "gatsby-plugin-image";
 
 import { defineCustomElements as deckDeckGoHighlightElement } from "@deckdeckgo/highlight-code/dist/loader";
 
-import Layout from '../../components/Layout';
-import Seo from '../../components/Seo';
+import Layout from "../../components/Layout";
+import Seo from "../../components/Seo";
 
-import './md-remark.scss';
-import {useEffect} from "react";
+import "./markdownBlog.scss";
 
 const BlogPost = ({
   data, // this prop will be injected by the GraphQL query below.
 }: {
   data: any;
 }) => {
-  console.log('data--', data);
+  console.log("data--", data);
 
   const { markdownRemark } = data; // data.markdownRemark holds your post data
-  const { frontmatter, html } = markdownRemark;
-  console.log('front-matter--', frontmatter);
+  const { frontmatter, timeToRead, html } = markdownRemark;
+  const { tags, date, title } = frontmatter;
+  console.log("front-matter--", frontmatter);
 
   useEffect(() => {
     deckDeckGoHighlightElement().then((result) => {
-      console.log('执行结果--',result);
+      console.log("执行结果--", result);
     });
-  }, [])
+  }, []);
   return (
-    <Layout pageTitle='Blog Page'>
-      <div className='blog'>
-        <h1>{frontmatter.title}</h1>
-        <h2>{frontmatter.date}</h2>
+    <Layout pageTitle="Blog Page">
+      <div className="markdown-blog">
+        <div className="blog-info">
+          {`${tags?.[0]} / ${date} / ${timeToRead} MIN READ`}
+        </div>
+        <h1 className="blog-title">{frontmatter.title}</h1>
         <div
-            className='blog-post-content'
-            dangerouslySetInnerHTML={{ __html: html }}
+          className="blog-post-content"
+          dangerouslySetInnerHTML={{ __html: html }}
         />
       </div>
     </Layout>
@@ -59,10 +62,11 @@ export const query = graphql`
     markdownRemark(id: { eq: $id }) {
       html
       frontmatter {
-        date(formatString: "MMMM DD, YYYY")
-        slug
+        tags
+        date
         title
       }
+      timeToRead
     }
   }
 `;
